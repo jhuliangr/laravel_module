@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index']);
 
+Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index']) -> name('article.index');
+
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
