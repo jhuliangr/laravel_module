@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "ndeblauw/starterpack",
+    "name": "jhuliangr/laravel_module",
     "type": "project",
-    "description": "Educational skeleton application for the Laravel framework.",
+    "description": "Educational application for the Laravel framework, one app for students to upload their homeworks for teachers to rate them.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
