@@ -4,7 +4,7 @@
     <title>Homeworks</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<header class="bg-teal-300 p-5 flex items-center justify-between fixed w-full">
+<header class="bg-teal-300 p-5 flex items-center justify-between fixed w-full z-10">
     <p class="text-xl">
         Homework
     </p>
