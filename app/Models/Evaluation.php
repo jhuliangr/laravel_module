@@ -10,6 +10,12 @@ class Evaluation extends Model
     /** @use HasFactory<\Database\Factories\CalificationFactory> */
     use HasFactory;
 
+     protected $fillable = [
+        'value',
+        'homework_id',
+        'teacher_id',
+    ];
+
     public function homework()
     {
         return $this->belongsTo(Homework::class);

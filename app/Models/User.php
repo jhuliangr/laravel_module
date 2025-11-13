@@ -56,7 +56,8 @@ class User extends Authenticatable
         return $this->teacher !== null;
     }
 
-    public courses(){
-        return$this-> belongToMany(Course::class);
+    public function courses()
+    {
+        return $this-> belongsToMany(Course::class);
     }
 }

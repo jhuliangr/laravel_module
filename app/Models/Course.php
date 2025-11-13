@@ -9,6 +9,13 @@ class Course extends Model
 {
     /** @use HasFactory<\Database\Factories\ReviewFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'teacher_id',
+        'module_name',
+        'start_date',
+    ];
+
     public function homeworks()
     {
         return $this->hasMany(Homework::class);
