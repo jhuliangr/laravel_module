@@ -16,10 +16,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->text('body');
-            $table->foreignId('user_id')
-                  ->constrained()
-                  ->onDelete('cascade');
-            $table->foreignId('course_id')
+            $table->foreignId('course_student_id')
                   ->constrained()
                   ->onDelete('cascade');
 
