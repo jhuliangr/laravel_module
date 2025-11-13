@@ -3,9 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Course;
+use App\Models\Teacher;
 use App\Models\Homework;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Evaluation;
+use App\Models\CourseStudent;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,11 +20,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        Homework::factory(10) -> create();
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory(20)->create();
+        Teacher::factory(5)->create();
+        Course::factory(10)->create();
+        CourseStudent::factory(10)->create();
+        Homework::factory(10)->create();
+        Evaluation::factory(10)->create();
     }
 }
