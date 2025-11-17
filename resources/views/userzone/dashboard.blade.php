@@ -1,17 +1,25 @@
-<x-app-layout>
+<x-site-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Dashboard
+            </h2>
+            @if ($teacher)
+                You're logged in as a teacher
+            @endif
+        </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+            @if ($teacher)
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between items-center px-3">
+                    Hello teacher!
+                    <a class="py-3 px-5 bg-teal-400 hover:bg-teal-300 rounded-xl cursor-pointer" href="{{ route('course.index') }}">
+                        Admin your courses
+                    </a>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
-</x-app-layout>
+</x-site-layout>
