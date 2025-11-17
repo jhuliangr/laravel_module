@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Homework;
 
 class HomeWorkController extends Controller
 {
-    function index(){
-        return view('homework.index');
+    public function index()
+    {
+        $homeworks = Homework::all();
+
+        return view('homework.index', compact('homeworks'));
     }
 
-    function show($id){
-        return view('homework.show', compact('id'));
+    public function show($id)
+    {
+        $homework = Homework::find($id);
+
+        return view('homework.show', compact('homework'));
     }
 }
