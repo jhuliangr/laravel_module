@@ -25,9 +25,17 @@
                 @if (Route::has('login'))
                     <div class="flex flex-col items-start justify-end">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="block px-4 py-2 hover:bg-teal-100 w-full">
-                                Dashboard
+                            <a href="{{ url('/profile') }}" class="block px-4 py-2 hover:bg-teal-100 w-full">
+                                Profile
                             </a>
+                            <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 hover:bg-teal-100 w-full">
+                                @csrf
+                                <button :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    Log Out
+                                </button>
+                            </form>
                         @else
                             <a href="{{ route('login') }}" class="block px-4 py-2 hover:bg-teal-100 w-full">
                                 Log in
