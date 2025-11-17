@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,12 @@ class CourseController extends Controller
             $courses = Course::all();
         }
 
-        return view('course.index', compact('courses'));
+        return view('course.index', compact('courses', 'user'));
     }
 
-    public function create() {}
+    public function create()
+    {
+    }
 
     public function store(Request $request)
     {
@@ -43,8 +46,10 @@ class CourseController extends Controller
     public function show(string $id)
     {
         $course = Course::find($id);
+        $user = Auth::user();
+        $edit = $user->teacher && $course->teacher_id === $user->teacher->id;
 
-        return view('course.show', compact('course'));
+        return view('course.show', compact('course', 'user', 'edit'));
     }
 
     public function edit(string $id)
@@ -72,6 +77,42 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
 
-        return redirect()->route('course.index')->with('success', 'Curso deleted successfully');
+        return redirect()->route('course.index');
+    }
+
+    // Extra functions
+    public function user_courses()
+    {
+        $user = Auth::user();
+        $courses = $user->courses;
+        $show = false;
+
+        return view('course.index', compact('courses', 'user'));
+    }
+
+    public function pick()
+    {
+        $user = Auth::user();
+
+        $excluded_course_ids = $user->courses->pluck('id');
+
+        if ($user->teacher) {
+            $excluded_course_ids = $excluded_course_ids->merge($user->teacher->courses->pluck('id'))->unique();
+        }
+
+        $courses = Course::whereNotIn('id', $excluded_course_ids)->get();
+
+        return view('course.pick', compact('courses'));
+    }
+
+    public function enroll_in($course_id)
+    {
+        $user = Auth::user();
+        CourseStudent::create([
+            'user_id' => $user->id,
+            'course_id' => $course_id,
+        ]);
+
+        return redirect()->route('course.pick');
     }
 }
