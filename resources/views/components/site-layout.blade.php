@@ -16,8 +16,8 @@
 
         <div class="relative">
             <button id="dropdownButton" class="p-2 rounded hover:bg-teal-400 transition-colors">
-                <div class="border-t-4 border-b-2 border-teal-700 w-7 h-3"></div>
-                <div class="border-t-2 border-b-4 border-teal-700 w-7 h-3"></div>
+                <div class="border-t-4 border-b-2 border-teal-700 w-7 h-3 rounded-t-sm"></div>
+                <div class="border-t-2 border-b-4 border-teal-700 w-7 h-3 rounded-b-sm"></div>
             </button>
 
             <div id="dropdownMenu"
