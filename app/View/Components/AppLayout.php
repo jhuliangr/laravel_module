@@ -12,6 +12,7 @@ class AppLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.app');
+        $is_teacher = auth()->user()->isTeacher();
+        return view('layouts.app', compact('is_teacher'));
     }
 }
