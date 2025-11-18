@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,8 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
 </head>
-<body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100">
+<body class="font-sans">
+<div class="min-h-screen bg-gray-100 rounded-[70px] shadow-lg">
     @include('layouts.app_navigation')
 
     <!-- Page Heading -->
