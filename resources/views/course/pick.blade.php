@@ -10,8 +10,7 @@
         </div>
     @else
         <div class="flex flex-col p-3 bg-gray-100 mt-5 max-h-[50vh] overflow-y-auto rounded-xl">
-            <div
-                class="font-bold grid grid-cols-2 bg-teal-300 my-1 px-5 py-1 rounded-xl">
+            <div class="font-bold grid grid-cols-2 bg-teal-300 my-1 px-5 py-1 rounded-xl">
                 <div>
                     Course name
                 </div>
@@ -20,15 +19,7 @@
                 </div>
             </div>
             @foreach ($courses as $course)
-                <a href="/course/{{ $course->id }}"
-                    class="grid grid-cols-2 bg-teal-200 my-1 px-5 py-1 rounded-xl cursor-pointer hover:bg-teal-100 transition-colors duration-300 ease-in">
-                    <div>
-                        {{ $course->module_name }}
-                    </div>
-                    <div>
-                        {{ $course->start_date }}
-                    </div>
-                </a>
+                <x-course-row :course="$course" />
             @endforeach
         </div>
     @endif
