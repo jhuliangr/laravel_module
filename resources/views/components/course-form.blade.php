@@ -1,6 +1,6 @@
 <section class="space-y-6">
     <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'course-form')"
-        class="text-gray-950 bg-teal-300 py-3 px-5 rounded-xl">
+        class="text-gray-950 bg-teal-300 py-3 px-5 rounded-xl hover:bg-teal-400 transition-colors duration-300 shadow-md hover:shadow-sm">
         {{ isset($course) ? 'Edit course':'Create Course' }}
     </button>
 

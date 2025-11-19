@@ -1,12 +1,12 @@
 <x-site-layout>
     <x-app-layout>
 
-        <div class="bg-gray-200 w-full flex items-center justify-between rounded-xl p-3">
+        <div class="w-full flex items-center justify-between p-3">
             @include('components.back-button')
 
             @if ($user->teacher && $courses->pluck('teacher_id')->contains($user->teacher->id))
                 @if ($user->teacher)
-                    @include('course.create-course-form')
+                    @include('components.course-form')
                 @endif
             @endif
         </div>
