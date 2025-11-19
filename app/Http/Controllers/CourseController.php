@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\CourseStudent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -23,7 +22,7 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
         $validated = $request->validate([
             'module_name' => ['required', 'string', 'min:5', 'max:255'],
@@ -42,7 +41,7 @@ class CourseController extends Controller
     public function show(string $id)
     {
         $course = Course::find($id);
-        $user = Auth::user();
+        $user = auth()->user();
         $edit = $user->teacher && $course->teacher_id === $user->teacher->id;
 
         return view('course.show', compact('course', 'user', 'edit'));
@@ -103,7 +102,7 @@ class CourseController extends Controller
 
     public function enroll_in($course_id)
     {
-        $user = Auth::user();
+        $user = auth()->user();
         CourseStudent::create([
             'user_id' => $user->id,
             'course_id' => $course_id,
