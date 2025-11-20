@@ -13,7 +13,11 @@
                 </div>
                 <div class="mt-10">
                 </div>
-
+                <a href="{{ route('course.pick') }}">
+                    <x-breeze.primary-button>
+                        Enroll courses
+                    </x-breeze.primary-button>
+                </a>
             </div>
         </div>
     </x-app-layout>
