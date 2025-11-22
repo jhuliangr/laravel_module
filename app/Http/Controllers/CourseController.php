@@ -50,7 +50,10 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
 
-        return view('course.show', compact('course'));
+        $user = auth()->user();
+        $edit = $user->teacher && $course->teacher_id === $user->teacher->id;
+
+        return view('course.show', compact('course', 'user', 'edit'));
     }
 
     public function update(Request $request, string $id)
@@ -63,7 +66,10 @@ class CourseController extends Controller
         $course = Course::find($id);
         $course->update($validated);
 
-        return view('course.show', compact('course'));
+        $user = auth()->user();
+        $edit = $user->teacher && $course->teacher_id === $user->teacher->id;
+
+        return view('course.show', compact('course', 'user', 'edit'));
     }
 
     public function destroy(string $id)
