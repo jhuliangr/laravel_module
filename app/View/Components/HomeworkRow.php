@@ -12,10 +12,8 @@ class HomeworkRow extends Component
     /**
      * Create a new component instance.
      */
-    public Homework $hw;
-    public function __construct(Homework $hw)
+    public function __construct(public Homework $hw, public ?string $withStudentName)
     {
-        $this->hw = $hw;
     }
 
     /**
