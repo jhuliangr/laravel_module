@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CourseStudent;
+use App\Models\Evaluation;
 use App\Models\Homework;
 use Illuminate\Http\Request;
 
@@ -16,18 +17,28 @@ class HomeWorkController extends Controller
             ->first();
 
         if (!$courseStudent) {
-            return collect();
+            $homeworks = Homework::whereIn('course_student_id', function ($query) use ($courseId) {
+                $query->select('id')
+                    ->from('course_students')
+                    ->where('course_id', $courseId);
+            })->get();
+            $withStudentName = true;
+            return view('homework.index', compact('homeworks', 'courseId', 'withStudentName'));
         }
         $homeworks = Homework::where('course_student_id', $courseStudent->id)->get();
 
         return view('homework.index', compact('homeworks', 'courseId'));
     }
 
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
+        $highestScore = "";
         $homework = Homework::find($id);
-
-        return view('homework.show', compact('homework'));
+        if (!$homework->evaluations->isEmpty()) {
+            $highestScore = $homework->evaluations->max('value');
+        }
+        $isTeacher = $request->is_teacher;
+        return view('homework.show', compact('homework', 'highestScore', 'isTeacher'));
     }
 
     public function store(Request $request, string $id)
@@ -47,5 +58,24 @@ class HomeWorkController extends Controller
         ]);
 
         return redirect(route('homework.index', $id));
+    }
+    public function evaluate(Request $request, string $id)
+    {
+        Evaluation::create([
+            'homework_id' => $id,
+            'value' => $request->evaluation,
+            'teacher_id' => auth()->user()->teacher->id
+        ]);
+        return redirect(route('homework.show', $id));
+    }
+    public function reEvaluate(Request $request, string $id)
+    {
+        $evaluation = Evaluation::where('homework_id', $id);
+        $evaluation->update([
+            'value' => $request->evaluation,
+            'teacher_id' => auth()->user()->teacher->id
+        ]);
+
+        return redirect(route('homework.show', $id));
     }
 }
