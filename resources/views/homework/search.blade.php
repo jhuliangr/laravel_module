@@ -4,8 +4,8 @@
     <form action="{{ route('homework.search') }}" method="GET" class="flex items-center justify-between gap-5 px-5">
         <x-back-button />
         <x-breeze.text-input type="text" name="search" class="w-full"
-            placeholder="Buscar por título, nombre de usuario, email o curso..." value="{{ $search }}" />
-        <x-breeze.primary-button type="submit" class="btn btn-primary w-100">Buscar</x-breeze.primary-button>
+            placeholder="Search by title, username, email or course name..." value="{{ $search }}" />
+        <x-breeze.primary-button type="submit" class="btn btn-primary w-100">Find</x-breeze.primary-button>
     </form>
 
     @if ($homeworks->count() > 0)
@@ -24,10 +24,10 @@
                         {{ $homework->title }}
                     </div>
                     <div>
-                        {{ $homework->student->name }}
+                        {{ $homework->student->userData->name }}
                     </div>
                     <div>
-                        {{ $homework->student->email }}
+                        {{ $homework->student->userData->email }}
                     </div>
                     <div>
                         {{ $homework->course->module_name ?? '-' }}
