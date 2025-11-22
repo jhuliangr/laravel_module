@@ -20,6 +20,7 @@ Route::middleware(['auth', 'is_teacher'])->group(function () {
     Route::get('/pick_courses', [App\Http\Controllers\CourseController::class, 'pick'])->name('course.pick');
     Route::post('/enroll_in/{course_id}', [App\Http\Controllers\CourseController::class, 'enroll_in'])->name('course.enroll_in');
 
+    Route::get('/homework/search', [\App\Http\Controllers\HomeworkController::class, 'search'])->name('homework.search');
     Route::get('/homework/{courseId}', [\App\Http\Controllers\HomeworkController::class, 'index'])->name('homework.index');
     Route::get('/homework/show/{id}', [\App\Http\Controllers\HomeworkController::class, 'show'])->name('homework.show');
     Route::post('/homework/{id}', [\App\Http\Controllers\HomeworkController::class, 'store'])->name('homework.store');
