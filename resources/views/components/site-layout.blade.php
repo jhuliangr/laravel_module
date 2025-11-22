@@ -31,7 +31,9 @@
                             <form method="POST" action="{{ route('logout') }}"
                                 class="block px-4 py-2 hover:bg-teal-100 w-full">
                                 @csrf
-                                <button :href="route('logout')"
+                                <button 
+                                class="w-full text-left"
+                                :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                     Log Out
