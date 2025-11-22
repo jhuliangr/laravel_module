@@ -11,7 +11,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $user = auth()->user();
-        $courses = $request->is_teacher ? $request->user()->teacher->courses() : Course::all();
+        $courses = $request->is_teacher ? $request->user()->teacher->courses()->paginate(5) : Course::paginate(5);
         return view('course.index', compact('courses', 'user'));
     }
 
