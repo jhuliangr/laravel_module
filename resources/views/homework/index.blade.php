@@ -7,7 +7,11 @@
             @include('components.homework-form', ['id' => $courseId])
         </div>
         @foreach ($homeworks as $hw)
-            <x-homework-row :hw="$hw" />
+            @if (isset($withStudentName))
+                <x-homework-row :hw="$hw" withStudentName="{{ $withStudentName }}" />
+            @else
+                <x-homework-row :hw="$hw" />
+            @endif
         @endforeach
     @endif
 </x-site-layout>
