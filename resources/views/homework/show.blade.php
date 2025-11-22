@@ -2,14 +2,21 @@
     <div class="flex items-center justify-between mb-5 px-5">
         <x-back-button />
         <div class="flex gap-3 items-center">
-            <div class="rounded-full bg-teal-800 p-3 text-white size-10 text-center flex items-center justify-center">
-                {{ $highestScore }}
-            </div>
+            @if ($highestScore)
+                <div
+                    class="rounded-full bg-teal-800 p-3 text-white size-10 text-center flex items-center justify-center">
+                    {{ $highestScore }}
+                </div>
+            @endif
             @if ($isTeacher)
                 <x-evaluation-form :id="$homework->id" :evaluated="!$homework->evaluations->isEmpty()" highestScore="{{ $highestScore }}" />
             @else
                 <p class="text-xl tracking-widest">
-                    Points
+                    @if ($highestScore)
+                        Points
+                    @else
+                        Not graded yet
+                    @endif
                 </p>
             @endif
         </div>
